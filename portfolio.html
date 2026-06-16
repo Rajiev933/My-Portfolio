@@ -1,912 +1,1060 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta
-    name="description"
-    content="Portfolio of Rajeev Ranjan Singh, a software developer specializing in ASP.NET Core, Angular, SQL Server, and enterprise web applications.">
-  <title>Rajeev Ranjan Singh | Software Developer</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio of Rajeev Ranjan Singh, a software developer specializing in ASP.NET Core, Angular, SQL Server, and enterprise web applications."
+    />
+    <title>Rajeev Ranjan Singh | Software Developer</title>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: #f7f4ed;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background:
+          radial-gradient(circle at 15% 10%, rgba(10, 132, 120, 0.24), transparent 28rem),
+          linear-gradient(135deg, #101014 0%, #182028 48%, #10221e 100%);
+      }
+
+      * {
+        box-sizing: border-box;
+        letter-spacing: 0;
+      }
+
+      ::selection {
+        background: #e0b75d;
+        color: #101014;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .portfolio-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        background: rgba(16, 16, 20, 0.82);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px);
+      }
 
-    body {
-      margin: 0;
-      min-width: 320px;
-      color: #f7f4ed;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(10, 132, 120, 0.24), transparent 28rem),
-        linear-gradient(135deg, #101014 0%, #182028 48%, #10221e 100%);
-    }
-
-    * {
-      box-sizing: border-box;
-      letter-spacing: 0;
-    }
-
-    ::selection {
-      background: #e0b75d;
-      color: #101014;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 2rem));
-      margin: 0 auto;
-    }
-
-    .portfolio-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      background: rgba(16, 16, 20, 0.82);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(16px);
-    }
-
-    .nav-inner {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      min-height: 4.2rem;
-    }
-
-    .navbar-brand {
-      color: #fff;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .navbar-nav {
-      display: flex;
-      gap: 1.35rem;
-    }
-
-    .nav-link {
-      color: rgba(247, 244, 237, 0.76);
-      font-weight: 650;
-      text-decoration: none;
-    }
-
-    .nav-link:hover,
-    .nav-link:focus {
-      color: #e0b75d;
-    }
-
-    .hero-section {
-      min-height: 100vh;
-      padding: 8.5rem 0 5rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-grid {
-      align-items: center;
-      display: grid;
-      gap: 4rem;
-      grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
-    }
-
-    .eyebrow {
-      color: #e0b75d;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      margin: 0 0 0.85rem;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2 {
-      color: #fff;
-      font-weight: 850;
-      line-height: 1.04;
-      margin: 0;
-    }
-
-    h1 {
-      max-width: 15ch;
-      font-size: clamp(3rem, 5.3vw, 4.75rem);
-    }
-
-    h2 {
-      font-size: clamp(2rem, 4vw, 3.45rem);
-    }
-
-    .hero-copy {
-      color: rgba(247, 244, 237, 0.78);
-      font-size: 1.17rem;
-      line-height: 1.8;
-      max-width: 44rem;
-      margin: 1.55rem 0 0;
-    }
-
-    .hero-actions {
-      align-items: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2.3rem;
-    }
-
-    .btn,
-    .resume-link {
-      border-radius: 0.45rem;
-      font-weight: 750;
-      padding: 0.78rem 1.25rem;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: #0a8478;
-      border: 1px solid #0a8478;
-      color: #fff;
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #fff;
-    }
-
-    .btn-primary:hover,
-    .btn-primary:focus {
-      background: #096e66;
-      border-color: #096e66;
-    }
-
-    .btn-outline:hover,
-    .btn-outline:focus {
-      background: #f7f4ed;
-      color: #101014;
-    }
-
-    .resume-link {
-      color: #e0b75d;
-    }
-
-    .resume-link:hover,
-    .resume-link:focus {
-      color: #f3cf7b;
-      text-decoration: underline;
-    }
-
-    .hero-stats {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 3rem;
-      max-width: 42rem;
-    }
-
-    .glass-card,
-    .hero-stats div,
-    .skill-card,
-    .project-card,
-    .timeline-item,
-    .credential-card,
-    .achievement-card,
-    .contact-panel {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.18);
-    }
-
-    .hero-stats div {
-      border-radius: 0.5rem;
-      padding: 1rem;
-    }
-
-    .hero-stats strong {
-      color: #fff;
-      display: block;
-      font-size: 2rem;
-      line-height: 1;
-    }
-
-    .hero-stats span {
-      color: rgba(247, 244, 237, 0.68);
-      display: block;
-      font-size: 0.88rem;
-      margin-top: 0.45rem;
-    }
-
-    .profile-panel {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 1.1rem;
-      background:
-        linear-gradient(160deg, rgba(224, 183, 93, 0.2), transparent 42%),
-        rgba(255, 255, 255, 0.07);
-      max-width: 25rem;
-      padding: 1.2rem;
-    }
-
-    .profile-photo {
-      aspect-ratio: 1 / 1.08;
-      border-radius: 0.8rem;
-      display: block;
-      height: auto;
-      object-fit: cover;
-      object-position: center top;
-      width: 100%;
-    }
-
-    .profile-card {
-      align-items: center;
-      background: #f7f4ed;
-      border-radius: 0.6rem;
-      color: #101014;
-      display: flex;
-      font-weight: 800;
-      gap: 0.65rem;
-      margin-top: 1rem;
-      padding: 1rem;
-    }
-
-    .status-dot {
-      background: #0a8478;
-      border-radius: 999px;
-      box-shadow: 0 0 0 0.4rem rgba(10, 132, 120, 0.16);
-      height: 0.68rem;
-      width: 0.68rem;
-    }
-
-    .profile-tags,
-    .project-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1rem;
-    }
-
-    .profile-tags span,
-    .project-type {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      color: rgba(247, 244, 237, 0.82);
-      font-size: 0.83rem;
-      font-weight: 750;
-      padding: 0.45rem 0.75rem;
-    }
-
-    .section {
-      padding: 6.5rem 0;
-    }
-
-    .section-muted {
-      background: rgba(255, 255, 255, 0.035);
-    }
-
-    .section-heading {
-      margin-bottom: 2.6rem;
-      max-width: 48rem;
-    }
-
-    .about-grid,
-    .skills-grid,
-    .projects-grid,
-    .credentials-grid,
-    .achievements-grid,
-    .contact-panel {
-      display: grid;
-      gap: 1.2rem;
-    }
-
-    .about-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .skills-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .projects-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .credentials-grid {
-      grid-template-columns: 1.35fr repeat(2, minmax(0, 0.82fr));
-    }
-
-    .achievements-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 1.2rem;
-    }
-
-    .about-grid p,
-    .contact-panel p,
-    .project-card p,
-    .credential-card p,
-    .achievement-card p,
-    .timeline-item p,
-    .timeline-item li {
-      color: rgba(247, 244, 237, 0.74);
-      font-size: 1.03rem;
-      line-height: 1.75;
-    }
-
-    .skill-card,
-    .project-card,
-    .timeline-item,
-    .credential-card,
-    .achievement-card {
-      border-radius: 0.75rem;
-      height: 100%;
-      padding: 1.35rem;
-    }
-
-    .skill-card h3,
-    .project-card h3,
-    .timeline-item h3,
-    .credential-card h3,
-    .achievement-card h3 {
-      color: #fff;
-      font-size: 1.22rem;
-      font-weight: 820;
-      margin: 0 0 0.9rem;
-    }
-
-    .card-icon {
-      align-items: center;
-      background: rgba(10, 132, 120, 0.2);
-      border: 1px solid rgba(10, 132, 120, 0.35);
-      border-radius: 0.5rem;
-      color: #7be0d2;
-      display: flex;
-      font-size: 0.83rem;
-      font-weight: 900;
-      height: 2.6rem;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-      width: 2.6rem;
-    }
-
-    .skill-card ul,
-    .timeline-item ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .skill-card li {
-      color: rgba(247, 244, 237, 0.72);
-      padding: 0.3rem 0;
-    }
-
-    .skill-card li::before {
-      color: #e0b75d;
-      content: "/";
-      font-weight: 800;
-      margin-right: 0.55rem;
-    }
-
-    .timeline {
-      border-left: 1px solid rgba(224, 183, 93, 0.32);
-      display: grid;
-      gap: 1.3rem;
-      margin-left: 0.65rem;
-      padding-left: 1.7rem;
-    }
-
-    .timeline-item {
-      position: relative;
-    }
-
-    .timeline-item::before {
-      background: #e0b75d;
-      border: 0.28rem solid #16201f;
-      border-radius: 999px;
-      content: "";
-      height: 1rem;
-      left: -2.28rem;
-      position: absolute;
-      top: 1.6rem;
-      width: 1rem;
-    }
-
-    .timeline-date,
-    .company,
-    .credential-label,
-    .credential-year {
-      color: #e0b75d;
-      font-weight: 800;
-    }
-
-    .timeline-date,
-    .credential-label,
-    .credential-year {
-      display: block;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-    }
-
-    .company,
-    .credential-meta {
-      color: #e0b75d !important;
-      font-weight: 800;
-      margin-bottom: 0.9rem;
-    }
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 23rem;
-    }
-
-    .project-type {
-      display: inline-flex;
-      margin-bottom: 1.25rem;
-      width: fit-content;
-    }
-
-    .project-stack {
-      margin-top: auto;
-      padding-top: 1.15rem;
-    }
-
-    .project-stack span {
-      background: rgba(10, 132, 120, 0.16);
-      border: 1px solid rgba(10, 132, 120, 0.28);
-      border-radius: 999px;
-      color: #b9f3ea;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 0.36rem 0.6rem;
-    }
-
-    .credential-label {
-      margin-bottom: 0.8rem;
-    }
-
-    .credential-score {
-      color: #fff;
-      display: block;
-      font-size: 2rem;
-      line-height: 1;
-      margin-top: 1.2rem;
-    }
-
-    .credential-year {
-      margin-top: 0.5rem;
-    }
-
-    .achievement-card {
-      align-items: flex-start;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .achievement-card .card-icon {
-      flex: 0 0 auto;
-      margin-bottom: 0;
-    }
-
-    .contact-section {
-      padding-bottom: 3rem;
-    }
-
-    .contact-panel {
-      align-items: center;
-      border-radius: 0.85rem;
-      grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
-      padding: 2rem;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .contact-list a,
-    .contact-list span {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-radius: 0.45rem;
-      color: rgba(247, 244, 237, 0.86);
-      font-weight: 700;
-      padding: 0.9rem 1rem;
-      text-decoration: none;
-      word-break: break-word;
-    }
-
-    .contact-list a:hover,
-    .contact-list a:focus {
-      border-color: rgba(224, 183, 93, 0.45);
-      color: #fff;
-    }
-
-    @media (max-width: 991.98px) {
       .nav-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0.75rem;
-        padding: 0.9rem 0;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        min-height: 4.2rem;
+      }
+
+      .navbar-brand {
+        color: #fff;
+        font-weight: 800;
+        text-decoration: none;
       }
 
       .navbar-nav {
-        flex-wrap: wrap;
-        gap: 0.75rem 1rem;
+        display: flex;
+        gap: 1.35rem;
+      }
+
+      .nav-link {
+        color: rgba(247, 244, 237, 0.76);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        color: #e0b75d;
       }
 
       .hero-section {
-        min-height: auto;
-        padding-top: 8.5rem;
+        min-height: 100vh;
+        padding: 8.5rem 0 5rem;
+        display: flex;
+        align-items: center;
       }
 
-      .hero-grid,
-      .about-grid,
-      .credentials-grid,
-      .achievements-grid,
-      .contact-panel {
-        grid-template-columns: 1fr;
+      .hero-grid {
+        align-items: center;
+        display: grid;
+        gap: 4rem;
+        grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.65fr);
       }
 
-      .skills-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .eyebrow {
+        color: #e0b75d;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        margin: 0 0 0.85rem;
+        text-transform: uppercase;
       }
 
-      .profile-panel {
-        max-width: none;
+      h1,
+      h2 {
+        color: #fff;
+        font-weight: 850;
+        line-height: 1.04;
+        margin: 0;
       }
-    }
 
-    @media (max-width: 767.98px) {
       h1 {
-        font-size: 3.1rem;
+        max-width: 15ch;
+        font-size: clamp(3rem, 5.3vw, 4.75rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 3.45rem);
+      }
+
+      .hero-copy {
+        color: rgba(247, 244, 237, 0.78);
+        font-size: 1.17rem;
+        line-height: 1.8;
+        max-width: 44rem;
+        margin: 1.55rem 0 0;
       }
 
       .hero-actions {
-        align-items: stretch;
-        flex-direction: column;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2.3rem;
       }
 
-      .hero-actions .btn,
+      .btn,
       .resume-link {
-        text-align: center;
+        border-radius: 0.45rem;
+        font-weight: 750;
+        padding: 0.78rem 1.25rem;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: #0a8478;
+        border: 1px solid #0a8478;
+        color: #fff;
+      }
+
+      .btn-outline {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #fff;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background: #096e66;
+        border-color: #096e66;
+      }
+
+      .btn-outline:hover,
+      .btn-outline:focus {
+        background: #f7f4ed;
+        color: #101014;
+      }
+
+      .resume-link {
+        color: #e0b75d;
+      }
+
+      .resume-link:hover,
+      .resume-link:focus {
+        color: #f3cf7b;
+        text-decoration: underline;
+      }
+
+      .hero-stats {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 3rem;
+        max-width: 42rem;
+      }
+
+      .glass-card,
+      .hero-stats div,
+      .skill-card,
+      .project-card,
+      .timeline-item,
+      .credential-card,
+      .achievement-card,
+      .contact-panel {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        box-shadow: 0 1.25rem 3.5rem rgba(0, 0, 0, 0.18);
+      }
+
+      .hero-stats div {
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+
+      .hero-stats strong {
+        color: #fff;
+        display: block;
+        font-size: 2rem;
+        line-height: 1;
+      }
+
+      .hero-stats span {
+        color: rgba(247, 244, 237, 0.68);
+        display: block;
+        font-size: 0.88rem;
+        margin-top: 0.45rem;
+      }
+
+      .profile-panel {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 1.1rem;
+        background:
+          linear-gradient(160deg, rgba(224, 183, 93, 0.2), transparent 42%),
+          rgba(255, 255, 255, 0.07);
+        max-width: 25rem;
+        padding: 1.2rem;
+      }
+
+      .profile-photo {
+        aspect-ratio: 1 / 1.08;
+        border-radius: 0.8rem;
+        display: block;
+        height: auto;
+        object-fit: cover;
+        object-position: center top;
         width: 100%;
       }
 
-      .hero-stats,
-      .skills-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .profile-card {
+        align-items: center;
+        background: #f7f4ed;
+        border-radius: 0.6rem;
+        color: #101014;
+        display: flex;
+        font-weight: 800;
+        gap: 0.65rem;
+        margin-top: 1rem;
+        padding: 1rem;
+      }
+
+      .status-dot {
+        background: #0a8478;
+        border-radius: 999px;
+        box-shadow: 0 0 0 0.4rem rgba(10, 132, 120, 0.16);
+        height: 0.68rem;
+        width: 0.68rem;
+      }
+
+      .profile-tags,
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+
+      .profile-tags span,
+      .project-type {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        color: rgba(247, 244, 237, 0.82);
+        font-size: 0.83rem;
+        font-weight: 750;
+        padding: 0.45rem 0.75rem;
       }
 
       .section {
-        padding-top: 4.8rem;
-        padding-bottom: 4.8rem;
+        padding: 6.5rem 0;
+      }
+
+      .section-muted {
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .section-heading {
+        margin-bottom: 2.6rem;
+        max-width: 48rem;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid,
+      .credentials-grid,
+      .achievements-grid,
+      .contact-panel {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .credentials-grid {
+        grid-template-columns: 1.35fr repeat(2, minmax(0, 0.82fr));
+      }
+
+      .achievements-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 1.2rem;
+      }
+
+      .about-grid p,
+      .contact-panel p,
+      .project-card p,
+      .credential-card p,
+      .achievement-card p,
+      .timeline-item p,
+      .timeline-item li {
+        color: rgba(247, 244, 237, 0.74);
+        font-size: 1.03rem;
+        line-height: 1.75;
+      }
+
+      .skill-card,
+      .project-card,
+      .timeline-item,
+      .credential-card,
+      .achievement-card {
+        border-radius: 0.75rem;
+        height: 100%;
+        padding: 1.35rem;
+      }
+
+      .skill-card h3,
+      .project-card h3,
+      .timeline-item h3,
+      .credential-card h3,
+      .achievement-card h3 {
+        color: #fff;
+        font-size: 1.22rem;
+        font-weight: 820;
+        margin: 0 0 0.9rem;
+      }
+
+      .card-icon {
+        align-items: center;
+        background: rgba(10, 132, 120, 0.2);
+        border: 1px solid rgba(10, 132, 120, 0.35);
+        border-radius: 0.5rem;
+        color: #7be0d2;
+        display: flex;
+        font-size: 0.83rem;
+        font-weight: 900;
+        height: 2.6rem;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+        width: 2.6rem;
+      }
+
+      .skill-card ul,
+      .timeline-item ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .skill-card li {
+        color: rgba(247, 244, 237, 0.72);
+        padding: 0.3rem 0;
+      }
+
+      .skill-card li::before {
+        color: #e0b75d;
+        content: '/';
+        font-weight: 800;
+        margin-right: 0.55rem;
+      }
+
+      .timeline {
+        border-left: 1px solid rgba(224, 183, 93, 0.32);
+        display: grid;
+        gap: 1.3rem;
+        margin-left: 0.65rem;
+        padding-left: 1.7rem;
+      }
+
+      .timeline-item {
+        position: relative;
+      }
+
+      .timeline-item::before {
+        background: #e0b75d;
+        border: 0.28rem solid #16201f;
+        border-radius: 999px;
+        content: '';
+        height: 1rem;
+        left: -2.28rem;
+        position: absolute;
+        top: 1.6rem;
+        width: 1rem;
+      }
+
+      .timeline-date,
+      .company,
+      .credential-label,
+      .credential-year {
+        color: #e0b75d;
+        font-weight: 800;
+      }
+
+      .timeline-date,
+      .credential-label,
+      .credential-year {
+        display: block;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+      }
+
+      .company,
+      .credential-meta {
+        color: #e0b75d !important;
+        font-weight: 800;
+        margin-bottom: 0.9rem;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 23rem;
+      }
+
+      .project-type {
+        display: inline-flex;
+        margin-bottom: 1.25rem;
+        width: fit-content;
+      }
+
+      .project-stack {
+        margin-top: auto;
+        padding-top: 1.15rem;
+      }
+
+      .project-stack span {
+        background: rgba(10, 132, 120, 0.16);
+        border: 1px solid rgba(10, 132, 120, 0.28);
+        border-radius: 999px;
+        color: #b9f3ea;
+        font-size: 0.78rem;
+        font-weight: 800;
+        padding: 0.36rem 0.6rem;
+      }
+
+      .credential-label {
+        margin-bottom: 0.8rem;
+      }
+
+      .credential-score {
+        color: #fff;
+        display: block;
+        font-size: 2rem;
+        line-height: 1;
+        margin-top: 1.2rem;
+      }
+
+      .credential-year {
+        margin-top: 0.5rem;
+      }
+
+      .achievement-card {
+        align-items: flex-start;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .achievement-card .card-icon {
+        flex: 0 0 auto;
+        margin-bottom: 0;
+      }
+
+      .contact-section {
+        padding-bottom: 3rem;
       }
 
       .contact-panel {
-        padding: 1.25rem;
+        align-items: center;
+        border-radius: 0.85rem;
+        grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+        padding: 2rem;
       }
-    }
-  </style>
-</head>
-<body>
-  <nav class="portfolio-nav">
-    <div class="container nav-inner">
-      <a class="navbar-brand" href="#home">Rajeev Ranjan Singh</a>
-      <div class="navbar-nav">
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#skills">Skills</a>
-        <a class="nav-link" href="#experience">Experience</a>
-        <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="#education">Education</a>
-        <a class="nav-link" href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
 
-  <main>
-    <section id="home" class="hero-section">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Software Developer</p>
-          <h1>Full-stack developer building secure, scalable enterprise applications.</h1>
-          <p class="hero-copy">
-            I am Rajeev Ranjan Singh, a software developer with hands-on experience across
-            enterprise web applications, REST API development, frontend engineering,
-            database-driven systems, and production support. I work with ASP.NET Core,
-            Angular, React, SQL Server, Entity Framework Core, ADO.NET, Clean Architecture,
-            CQRS, and JWT authentication to turn business requirements into reliable software.
-          </p>
+      .contact-list {
+        display: grid;
+        gap: 0.75rem;
+      }
 
-          <div class="hero-actions">
-            <a href="public/assets/Rajeev_Ranjan_Singh_Resume.pdf" class="btn btn-primary" download>
-              Download Resume
-            </a>
-            <a href="https://linkedin.com/in/rajeev-ranjan-singh-305822196" target="_blank" rel="noreferrer" class="btn btn-outline">
-              LinkedIn
-            </a>
-            <a href="https://github.com/Rajiev933" target="_blank" rel="noreferrer" class="resume-link">
-              GitHub
-            </a>
-          </div>
+      .contact-list a,
+      .contact-list span {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 0.45rem;
+        color: rgba(247, 244, 237, 0.86);
+        font-weight: 700;
+        padding: 0.9rem 1rem;
+        text-decoration: none;
+        word-break: break-word;
+      }
 
-          <div class="hero-stats" aria-label="Career highlights">
-            <div><strong>4+</strong><span>Years of Development</span></div>
-            <div><strong>Full</strong><span>Stack Delivery</span></div>
-            <div><strong>4</strong><span>Enterprise Projects</span></div>
-          </div>
-        </div>
+      .contact-list a:hover,
+      .contact-list a:focus {
+        border-color: rgba(224, 183, 93, 0.45);
+        color: #fff;
+      }
 
-        <div class="profile-panel">
-          <img src="public/assets/profile.jpg" class="profile-photo" alt="Rajeev Ranjan Singh">
-          <div class="profile-card"><span class="status-dot"></span>Enterprise web application developer</div>
-          <div class="profile-tags">
-            <span>ASP.NET Core</span>
-            <span>Angular</span>
-            <span>SQL Server</span>
-            <span>Clean Architecture</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      @media (max-width: 991.98px) {
+        .nav-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.75rem;
+          padding: 0.9rem 0;
+        }
 
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">About</p>
-          <h2>Engineering practical, maintainable solutions for business teams.</h2>
-        </div>
-        <div class="about-grid">
-          <p>
-            I specialize in building enterprise-grade applications where clean backend design,
-            responsive user interfaces, and dependable data access all need to work together.
-            My experience includes developing ASP.NET Core Web APIs, Angular and React
-            interfaces, SQL Server database workflows, and EF Core or ADO.NET based data layers.
-          </p>
-          <p>
-            I am comfortable working through the full SDLC: understanding requirements,
-            translating them into technical solutions, writing clean and testable code,
-            supporting reviews, coordinating with clients, and improving applications after
-            delivery. I bring a steady, ownership-led approach to solving business-critical problems.
-          </p>
-        </div>
-      </div>
-    </section>
+        .navbar-nav {
+          flex-wrap: wrap;
+          gap: 0.75rem 1rem;
+        }
 
-    <section id="skills" class="section section-muted">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Technical Skills</p>
-          <h2>A balanced stack for modern enterprise development.</h2>
-        </div>
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="card-icon">BE</div>
-            <h3>Backend</h3>
-            <ul>
-              <li>C#</li>
-              <li>ASP.NET Core</li>
-              <li>Web API</li>
-              <li>MVC</li>
-              <li>EF Core</li>
-              <li>ADO.NET</li>
-            </ul>
-          </article>
-          <article class="skill-card">
-            <div class="card-icon">FE</div>
-            <h3>Frontend</h3>
-            <ul>
-              <li>Angular</li>
-              <li>React</li>
-              <li>JavaScript</li>
-              <li>Bootstrap</li>
-              <li>jQuery</li>
-            </ul>
-          </article>
-          <article class="skill-card">
-            <div class="card-icon">DB</div>
-            <h3>Database</h3>
-            <ul>
-              <li>SQL Server</li>
-              <li>Stored Procedures</li>
-              <li>LINQ</li>
-              <li>Query Optimization</li>
-            </ul>
-          </article>
-          <article class="skill-card">
-            <div class="card-icon">TL</div>
-            <h3>Tools</h3>
-            <ul>
-              <li>Git</li>
-              <li>Postman</li>
-              <li>Visual Studio</li>
-              <li>Code Reviews</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+        .hero-section {
+          min-height: auto;
+          padding-top: 8.5rem;
+        }
 
-    <section id="experience" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Experience</p>
-          <h2>Experience delivering production-focused software.</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item">
-            <span class="timeline-date">Sep 2022 - Present</span>
-            <h3>Associate Program Analyst</h3>
-            <p class="company">Ebix Technologies</p>
-            <ul>
-              <li>Develop and maintain enterprise applications using ASP.NET Core, Angular, React, SQL Server, Entity Framework Core, and ADO.NET.</li>
-              <li>Build and enhance REST APIs, application modules, database workflows, and user-facing features aligned with business requirements.</li>
-              <li>Apply clean architecture principles, authentication patterns, and structured data access practices to improve maintainability and reliability.</li>
-              <li>Participate across the SDLC, including requirement analysis, implementation, debugging, deployment support, and post-release improvements.</li>
-              <li>Collaborate with clients and internal teams, support code reviews, resolve production issues, and contribute to more stable delivery cycles.</li>
-            </ul>
-          </article>
-          <article class="timeline-item">
-            <span class="timeline-date">Jun 2022 - Aug 2022</span>
-            <h3>Front End Developer Intern</h3>
-            <p class="company">NS Technology</p>
-            <p>
-              Built responsive web interfaces and strengthened frontend fundamentals across
-              HTML, CSS, JavaScript, Bootstrap, component structuring, cross-browser layout,
-              and practical UI implementation.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
+        .hero-grid,
+        .about-grid,
+        .credentials-grid,
+        .achievements-grid,
+        .contact-panel {
+          grid-template-columns: 1fr;
+        }
 
-    <section id="projects" class="section section-muted">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Projects</p>
-          <h2>Selected systems built around real operational needs.</h2>
-        </div>
-        <div class="projects-grid">
-          <article class="project-card">
-            <span class="project-type">Compliance Platform</span>
-            <h3>EbixCert</h3>
-            <p>
-              Enterprise vendor compliance and management platform used to manage vendor
-              records, compliance requirements, document-driven workflows, and operational
-              review processes. I worked on application modules built with Angular, ASP.NET
-              Core Web API, EF Core, and SQL Server, focusing on reliable API integration,
-              data handling, validation, and maintainable business logic.
-            </p>
-            <div class="project-stack">
-              <span>Angular</span><span>ASP.NET Core Web API</span><span>EF Core</span><span>SQL Server</span>
-            </div>
-          </article>
-          <article class="project-card">
-            <span class="project-type">Desktop Application</span>
-            <h3>ODSPro</h3>
-            <p>
-              Windows desktop application designed for vendor data management and internal
-              business processing. The project involved C#, ADO.NET, and SQL Server based
-              development, with emphasis on dependable CRUD operations, database connectivity,
-              stored data workflows, and a practical interface for vendor-related records.
-            </p>
-            <div class="project-stack">
-              <span>C#</span><span>ADO.NET</span><span>SQL Server</span><span>Windows Forms</span>
-            </div>
-          </article>
-          <article class="project-card">
-            <span class="project-type">Employee System</span>
-            <h3>iEmployee</h3>
-            <p>
-              Employee management system for organizing employee records, authentication, and
-              role-aware application workflows. The solution uses JWT authentication, Clean
-              Architecture, and CQRS patterns to separate API, application, domain, and
-              infrastructure concerns, making the system easier to extend and maintain.
-            </p>
-            <div class="project-stack">
-              <span>ASP.NET Core</span><span>JWT</span><span>CQRS</span><span>Clean Architecture</span>
-            </div>
-          </article>
-          <article class="project-card">
-            <span class="project-type">Vendor Workflow</span>
-            <h3>Prequal</h3>
-            <p>
-              Vendor prequalification and requirement management platform built to support
-              compliance tracking, vendor evaluation, and structured business workflows.
-              The application was developed with ASP.NET Core MVC and SQL Server, including
-              database-backed screens and workflow-oriented modules.
-            </p>
-            <div class="project-stack">
-              <span>ASP.NET Core MVC</span><span>SQL Server</span><span>MVC</span><span>Business Workflows</span>
-            </div>
-          </article>
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .profile-panel {
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        h1 {
+          font-size: 3.1rem;
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .hero-actions .btn,
+        .resume-link {
+          text-align: center;
+          width: 100%;
+        }
+
+        .hero-stats,
+        .skills-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding-top: 4.8rem;
+          padding-bottom: 4.8rem;
+        }
+
+        .contact-panel {
+          padding: 1.25rem;
+        }
+      }
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        width: 50px;
+        height: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        margin: 0 auto;
+        transition: 0.3s;
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: space-between;
+          padding: 12px 0;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .navbar-nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+
+          background: #101014;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+          max-height: 0;
+          overflow: hidden;
+
+          transition: max-height 0.3s ease;
+        }
+
+        .navbar-nav.active {
+          max-height: 500px;
+        }
+
+        .nav-link {
+          padding: 16px 20px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="portfolio-nav">
+      <div class="container nav-inner">
+        <a class="navbar-brand" href="#home"> Rajeev Ranjan Singh </a>
+
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="navbar-nav" id="mobileMenu">
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#experience">Experience</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#education">Education</a>
+          <a class="nav-link" href="#contact">Contact</a>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <section id="education" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Education & Achievements</p>
-          <h2>Academic foundation and continuous learning.</h2>
-        </div>
-        <div class="credentials-grid">
-          <article class="credential-card">
-            <span class="credential-label">Degree</span>
-            <h3>B.Tech in Computer Science</h3>
-            <p class="credential-meta">ITS Engineering College, Greater Noida</p>
-            <p>Completed a computer science engineering program with a strong foundation in programming, database systems, web development, software engineering concepts, and application development.</p>
-            <strong class="credential-score">75%</strong>
-            <span class="credential-year">Jan 2019 - Aug 2023</span>
-          </article>
-          <article class="credential-card">
-            <span class="credential-label">Senior Secondary</span>
-            <h3>Class 12th</h3>
-            <p class="credential-meta">RLSY Inter College, Koderma</p>
-            <p>Built the academic base for engineering studies with focus on analytical thinking, mathematics, and science fundamentals.</p>
-            <strong class="credential-score">72%</strong>
-            <span class="credential-year">2018</span>
-          </article>
-          <article class="credential-card">
-            <span class="credential-label">Secondary</span>
-            <h3>Class 10th</h3>
-            <p class="credential-meta">RPY High College, Koderma</p>
-            <p>Developed core academic discipline and problem-solving habits that later supported a transition into software engineering.</p>
-            <strong class="credential-score">77%</strong>
-            <span class="credential-year">2016</span>
-          </article>
-        </div>
-        <div class="achievements-grid">
-          <article class="achievement-card">
-            <span class="card-icon">5★</span>
-            <div>
-              <h3>5 Star Coder on HackerRank</h3>
-              <p>Recognized coding profile demonstrating consistent practice and problem-solving ability on HackerRank.</p>
-            </div>
-          </article>
-          <article class="achievement-card">
-            <span class="card-icon">PY</span>
-            <div>
-              <h3>Python Programming Certification</h3>
-              <p>Completed “Python Programming - A Practical Approach” from E & ICT Academy, IIT Kanpur.</p>
-            </div>
-          </article>
-          <article class="achievement-card">
-            <span class="card-icon">SQL</span>
-            <div>
-              <h3>SQL Certification</h3>
-              <p>Earned a SQL certificate from HackerRank, supporting practical database querying and relational data skills.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact-section">
-      <div class="container">
-        <div class="contact-panel">
+    <main>
+      <section id="home" class="hero-section">
+        <div class="container hero-grid">
           <div>
-            <p class="eyebrow">Contact</p>
-            <h2>Let’s build something useful.</h2>
-            <p>
-              Open to software development opportunities where I can contribute to scalable
-              web applications, backend services, database-driven systems, and enterprise
-              product delivery.
+            <p class="eyebrow">Software Developer</p>
+            <h1>Full-stack developer building secure, scalable enterprise applications.</h1>
+            <p class="hero-copy">
+              I am Rajeev Ranjan Singh, a software developer with hands-on experience across
+              enterprise web applications, REST API development, frontend engineering,
+              database-driven systems, and production support. I work with ASP.NET Core, Angular,
+              React, SQL Server, Entity Framework Core, ADO.NET, Clean Architecture, CQRS, and JWT
+              authentication to turn business requirements into reliable software.
             </p>
+
+            <div class="hero-actions">
+              <a
+                href="public/assets/Rajeev_Ranjan_Singh_Resume.pdf"
+                class="btn btn-primary"
+                download
+              >
+                Download Resume
+              </a>
+              <a
+                href="https://linkedin.com/in/rajeev-ranjan-singh-305822196"
+                target="_blank"
+                rel="noreferrer"
+                class="btn btn-outline"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/Rajiev933"
+                target="_blank"
+                rel="noreferrer"
+                class="resume-link"
+              >
+                GitHub
+              </a>
+            </div>
+
+            <div class="hero-stats" aria-label="Career highlights">
+              <div><strong>4+</strong><span>Years of Development</span></div>
+              <div><strong>Full</strong><span>Stack Delivery</span></div>
+              <div><strong>4</strong><span>Enterprise Projects</span></div>
+            </div>
           </div>
-          <div class="contact-list">
-            <a href="mailto:rajeevranjansingh8272@gmail.com">rajeevranjansingh8272@gmail.com</a>
-            <a href="tel:+919625288356">+91 96252 88356</a>
-            <span>Greater Noida, India</span>
-            <a href="https://github.com/Rajiev933" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/rajeev-ranjan-singh-305822196" target="_blank" rel="noreferrer">LinkedIn</a>
+
+          <div class="profile-panel">
+            <img src="public/assets/profile.jpg" class="profile-photo" alt="Rajeev Ranjan Singh" />
+            <div class="profile-card">
+              <span class="status-dot"></span>Enterprise web application developer
+            </div>
+            <div class="profile-tags">
+              <span>ASP.NET Core</span>
+              <span>Angular</span>
+              <span>SQL Server</span>
+              <span>Clean Architecture</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
-</body>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">About</p>
+            <h2>Engineering practical, maintainable solutions for business teams.</h2>
+          </div>
+          <div class="about-grid">
+            <p>
+              I specialize in building enterprise-grade applications where clean backend design,
+              responsive user interfaces, and dependable data access all need to work together. My
+              experience includes developing ASP.NET Core Web APIs, Angular and React interfaces,
+              SQL Server database workflows, and EF Core or ADO.NET based data layers.
+            </p>
+            <p>
+              I am comfortable working through the full SDLC: understanding requirements,
+              translating them into technical solutions, writing clean and testable code, supporting
+              reviews, coordinating with clients, and improving applications after delivery. I bring
+              a steady, ownership-led approach to solving business-critical problems.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section section-muted">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Technical Skills</p>
+            <h2>A balanced stack for modern enterprise development.</h2>
+          </div>
+          <div class="skills-grid">
+            <article class="skill-card">
+              <div class="card-icon">BE</div>
+              <h3>Backend</h3>
+              <ul>
+                <li>C#</li>
+                <li>ASP.NET Core</li>
+                <li>Web API</li>
+                <li>MVC</li>
+                <li>EF Core</li>
+                <li>ADO.NET</li>
+              </ul>
+            </article>
+            <article class="skill-card">
+              <div class="card-icon">FE</div>
+              <h3>Frontend</h3>
+              <ul>
+                <li>Angular</li>
+                <li>React</li>
+                <li>JavaScript</li>
+                <li>Bootstrap</li>
+                <li>jQuery</li>
+              </ul>
+            </article>
+            <article class="skill-card">
+              <div class="card-icon">DB</div>
+              <h3>Database</h3>
+              <ul>
+                <li>SQL Server</li>
+                <li>Stored Procedures</li>
+                <li>LINQ</li>
+                <li>Query Optimization</li>
+              </ul>
+            </article>
+            <article class="skill-card">
+              <div class="card-icon">TL</div>
+              <h3>Tools</h3>
+              <ul>
+                <li>Git</li>
+                <li>Postman</li>
+                <li>Visual Studio</li>
+                <li>Code Reviews</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Experience</p>
+            <h2>Experience delivering production-focused software.</h2>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-date">Sep 2022 - Present</span>
+              <h3>Associate Program Analyst</h3>
+              <p class="company">Ebix Technologies</p>
+              <ul>
+                <li>
+                  Develop and maintain enterprise applications using ASP.NET Core, Angular, React,
+                  SQL Server, Entity Framework Core, and ADO.NET.
+                </li>
+                <li>
+                  Build and enhance REST APIs, application modules, database workflows, and
+                  user-facing features aligned with business requirements.
+                </li>
+                <li>
+                  Apply clean architecture principles, authentication patterns, and structured data
+                  access practices to improve maintainability and reliability.
+                </li>
+                <li>
+                  Participate across the SDLC, including requirement analysis, implementation,
+                  debugging, deployment support, and post-release improvements.
+                </li>
+                <li>
+                  Collaborate with clients and internal teams, support code reviews, resolve
+                  production issues, and contribute to more stable delivery cycles.
+                </li>
+              </ul>
+            </article>
+            <article class="timeline-item">
+              <span class="timeline-date">Jun 2022 - Aug 2022</span>
+              <h3>Front End Developer Intern</h3>
+              <p class="company">NS Technology</p>
+              <p>
+                Built responsive web interfaces and strengthened frontend fundamentals across HTML,
+                CSS, JavaScript, Bootstrap, component structuring, cross-browser layout, and
+                practical UI implementation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section section-muted">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Projects</p>
+            <h2>Selected systems built around real operational needs.</h2>
+          </div>
+          <div class="projects-grid">
+            <article class="project-card">
+              <span class="project-type">Compliance Platform</span>
+              <h3>EbixCert</h3>
+              <p>
+                Enterprise vendor compliance and management platform used to manage vendor records,
+                compliance requirements, document-driven workflows, and operational review
+                processes. I worked on application modules built with Angular, ASP.NET Core Web API,
+                EF Core, and SQL Server, focusing on reliable API integration, data handling,
+                validation, and maintainable business logic.
+              </p>
+              <div class="project-stack">
+                <span>Angular</span><span>ASP.NET Core Web API</span><span>EF Core</span
+                ><span>SQL Server</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <span class="project-type">Desktop Application</span>
+              <h3>ODSPro</h3>
+              <p>
+                Windows desktop application designed for vendor data management and internal
+                business processing. The project involved C#, ADO.NET, and SQL Server based
+                development, with emphasis on dependable CRUD operations, database connectivity,
+                stored data workflows, and a practical interface for vendor-related records.
+              </p>
+              <div class="project-stack">
+                <span>C#</span><span>ADO.NET</span><span>SQL Server</span><span>Windows Forms</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <span class="project-type">Employee System</span>
+              <h3>iEmployee</h3>
+              <p>
+                Employee management system for organizing employee records, authentication, and
+                role-aware application workflows. The solution uses JWT authentication, Clean
+                Architecture, and CQRS patterns to separate API, application, domain, and
+                infrastructure concerns, making the system easier to extend and maintain.
+              </p>
+              <div class="project-stack">
+                <span>ASP.NET Core</span><span>JWT</span><span>CQRS</span
+                ><span>Clean Architecture</span>
+              </div>
+            </article>
+            <article class="project-card">
+              <span class="project-type">Vendor Workflow</span>
+              <h3>Prequal</h3>
+              <p>
+                Vendor prequalification and requirement management platform built to support
+                compliance tracking, vendor evaluation, and structured business workflows. The
+                application was developed with ASP.NET Core MVC and SQL Server, including
+                database-backed screens and workflow-oriented modules.
+              </p>
+              <div class="project-stack">
+                <span>ASP.NET Core MVC</span><span>SQL Server</span><span>MVC</span
+                ><span>Business Workflows</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Education & Achievements</p>
+            <h2>Academic foundation and continuous learning.</h2>
+          </div>
+          <div class="credentials-grid">
+            <article class="credential-card">
+              <span class="credential-label">Degree</span>
+              <h3>B.Tech in Computer Science</h3>
+              <p class="credential-meta">ITS Engineering College, Greater Noida</p>
+              <p>
+                Completed a computer science engineering program with a strong foundation in
+                programming, database systems, web development, software engineering concepts, and
+                application development.
+              </p>
+              <strong class="credential-score">75%</strong>
+              <span class="credential-year">Jan 2019 - Aug 2023</span>
+            </article>
+            <article class="credential-card">
+              <span class="credential-label">Senior Secondary</span>
+              <h3>Class 12th</h3>
+              <p class="credential-meta">RLSY Inter College, Koderma</p>
+              <p>
+                Built the academic base for engineering studies with focus on analytical thinking,
+                mathematics, and science fundamentals.
+              </p>
+              <strong class="credential-score">72%</strong>
+              <span class="credential-year">2018</span>
+            </article>
+            <article class="credential-card">
+              <span class="credential-label">Secondary</span>
+              <h3>Class 10th</h3>
+              <p class="credential-meta">RPY High College, Koderma</p>
+              <p>
+                Developed core academic discipline and problem-solving habits that later supported a
+                transition into software engineering.
+              </p>
+              <strong class="credential-score">77%</strong>
+              <span class="credential-year">2016</span>
+            </article>
+          </div>
+          <div class="achievements-grid">
+            <article class="achievement-card">
+              <span class="card-icon">5★</span>
+              <div>
+                <h3>5 Star Coder on HackerRank</h3>
+                <p>
+                  Recognized coding profile demonstrating consistent practice and problem-solving
+                  ability on HackerRank.
+                </p>
+              </div>
+            </article>
+            <article class="achievement-card">
+              <span class="card-icon">PY</span>
+              <div>
+                <h3>Python Programming Certification</h3>
+                <p>
+                  Completed “Python Programming - A Practical Approach” from E & ICT Academy, IIT
+                  Kanpur.
+                </p>
+              </div>
+            </article>
+            <article class="achievement-card">
+              <span class="card-icon">SQL</span>
+              <div>
+                <h3>SQL Certification</h3>
+                <p>
+                  Earned a SQL certificate from HackerRank, supporting practical database querying
+                  and relational data skills.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="container">
+          <div class="contact-panel">
+            <div>
+              <p class="eyebrow">Contact</p>
+              <h2>Let’s build something useful.</h2>
+              <p>
+                Open to software development opportunities where I can contribute to scalable web
+                applications, backend services, database-driven systems, and enterprise product
+                delivery.
+              </p>
+            </div>
+            <div class="contact-list">
+              <a href="mailto:rajeevranjansingh8272@gmail.com">rajeevranjansingh8272@gmail.com</a>
+              <a href="tel:+919625288356">+91 96252 88356</a>
+              <span>Greater Noida, India</span>
+              <a href="https://github.com/Rajiev933" target="_blank" rel="noreferrer">GitHub</a>
+              <a
+                href="https://linkedin.com/in/rajeev-ranjan-singh-305822196"
+                target="_blank"
+                rel="noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+    </script>
+  </body>
 </html>
